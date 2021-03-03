@@ -40,6 +40,9 @@ To set this up so you can use these files yourself for your own page, you must f
 * PostModel: Used to create the class that stores the post data.
 * ViewController: Set up to connect the data/models to your interface so that you can view/interact with the data.
 
+### .zip Folder
+Reddit-Approver.zip: Compressed folder of the iPhone application used to view/edit/approve/deny posts.
+
 ## Setting up your SQL Database
 Here is a list of tables necessary to create:
 * Posts table: Used to store all of the post data scraped from Reddit.
