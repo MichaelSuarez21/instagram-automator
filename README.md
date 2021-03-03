@@ -16,7 +16,7 @@ I also recommend crediting the Reddit user who made the original post :) The iPh
 ## Setup
 To set this up so you can use these files yourself for your own page, you must follow these steps:
 * Either pay to host a server or host one yourself (I used a shared server on [Dreamhost.com](https://dreamhost.com), they are cheap and simple to use).
-* Find a service like [Socialbu.com](https://socialbu.com) that utilizes RSS Feeds to automate posting to Instagram. Sign up with them and set up your Instagram account.
+* Find a service like [SocialBu.com](https://socialbu.com) that utilizes RSS Feeds to automate posting to Instagram. Sign up with them and set up your Instagram account.
 * Create a SQL database with a few simple tables to store the data for posts that will be posted to your Instagram ([Dreamhost.com](https://dreamhost.com) has MySQL setup on their shared servers by default, so this is what I used).
 * Download each of the Python files and personalize them to your website's/subreddit's/Instagram page's/databases' needs.
 * Download each of the Swift files and personalize them to your website's/subreddit's/Instagram page's/databases' needs. A section below will also describe how the StoryBoard for my application was created.
