@@ -53,13 +53,13 @@ Optional table:
 * Blacklisted users: A table used to avoid grabbing content from specific users.
 
 Basic Format for each table:
-* title - VARCHAR(200)
-* score - INT(10)
-* postID - INT(10)
-* url - VARCHAR(100)
-* body - TEXT
-* created - DATETIME
-* user - VARCHAR(50)
+* title - VARCHAR(200) // Post Title
+* score - INT(10)      // Karma score for each post
+* postID - INT(10)     // The unique identifier that Reddit associates with each post
+* url - VARCHAR(100)   // url of the post's image
+* body - TEXT          // Text associated with the post
+* created - DATETIME   // Date of when post was created
+* user - VARCHAR(50)   // Name of Reddit user who made the post
 
 ^ Each value for the data sizes are not solid, and can be moved up or down depending on your needs.
 
