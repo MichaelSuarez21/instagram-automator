@@ -4,7 +4,7 @@
 "instagram-automator" is a collection of several files that work across multiple platforms to automate the process of running theme/content pages on Instagram. Once configured, this process automates content collection for you to the point where you only need to spend 5 minutes a week browsing Reddit, via your iPhone app, to select posts for your page (and browsing Reddit isn't much of a chore).
 
 ## How it works, another basic description
-We utilize Reddit's Python API Wrapper (PRAW) to grab post data from any specified subreddit(s). We store this data in a SQL database on a Linux server that is used to host your website. We then use an iPhone app to view and edit the posts via PHP scripts hosted on your website, select which posts we want to have posted to our own Instagram theme page, and disapprove of those we do not. The ones we approve/disapprove of will be updated/reflected in our database, which will then indicate to another Python script which posts will have its data used to generate RSS feed items to, which is then used by your Instagram uploading platform of choice to upload to your Instagram (I used [SocialBu.com](https://socialbu.com) for this, they are great and their developers are helpful, but there are many others that utilize RSS feeds as well). Cron jobs set up on your server will leave the content scraping / XML feed generating parts fully automated, leaving you only needing to approve which posts you want on your Instagram.
+We utilize Reddit's Python API Wrapper (PRAW) to grab post data from any specified subreddit(s). We store this data in a SQL database on a Linux server that is used to host your website. We then use an iPhone app to view and edit the posts via PHP scripts hosted on your website, select which posts we want to have posted to our own Instagram theme page, and deny those we do not. The ones we approve/deny will be updated/reflected in our database, which will then indicate to another Python script which posts will have its data used to generate RSS feed items to, which is then used by your Instagram uploading platform of choice to upload to your Instagram (I used [SocialBu.com](https://socialbu.com) for this, they are great and their developers are helpful, but there are many others that utilize RSS feeds as well). Cron jobs set up on your server will leave the content scraping / XML feed generating parts fully automated, leaving you only needing to approve which posts you want on your Instagram.
 
 In short, posts go from: Reddit -> database -> iphone app -> database(approved/edited posts) -> RSS feed -> your Instagram
 
@@ -26,7 +26,7 @@ To set this up so you can use these files yourself for your own page, you must f
 
 ### PHP FILES (on your web server)
 * grab_posts: This file displays relevant post data encoded in JSON, pulled from your SQL database. This is useful to your iPhone app that will grab this data and display it to you.
-* deny_post: This is the PHP script that is invoked whenever you click the "Deny" button on your iPhone app. It deletes the selected post from the general posts table and inserts it into the disapproved posts table.
+* deny_post: This is the PHP script that is invoked whenever you click the "Deny" button on your iPhone app. It deletes the selected post from the general posts table and inserts it into the archived posts table.
 * approve_post: This is the PHP script that is invoked whenever you click the "Approve" button on your iPhone app. It deletes the selected post from the general posts table and inserts it into the approved posts table. Approved posts will be used to generate RSS Feed items to ultimately be posted on your Instagram.
 
 ### PYTHON FILES (on your web server)
@@ -35,10 +35,10 @@ To set this up so you can use these files yourself for your own page, you must f
 * rssFeedGen: Initiates the RSS Feed for an Instagram page and grabs one post from your approved posts table. Once the feed has been created, the addFeedItem.py file will be used to add subsequent posts.
 * addFeedItem: Grabs a post from your approved posts table and adds it to your RSS Feed.
 
-### SWIFT FILES (for your iPhone App)
+### SWIFT FILES, at least the revelant ones (for your iPhone App)
 * HomeModel: Used to create the class that pulls your JSON data from your SQL Database/PHP script, and then displays it to you via your Scroll View.
 * PostModel: Used to create the class that stores the post data.
-* ViewController: Set up to connect the data/models to your interface so that you can view/interact with the data. Unfortunately, more setting up here is needed on your end since the StoryBoard was used to create a lot of the interface non-programatically.
+* ViewController: Set up to connect the data/models to your interface so that you can view/interact with the data.
 
 ## Setting up your SQL Database
 Here is a list of tables necessary to create:
@@ -59,3 +59,6 @@ Basic Format for each table:
 * user - VARCHAR(50)
 
 ^ Each value for the data sizes are not solid, and can be moved up or down depending on your needs.
+
+## Setting up your iPhone Application
+The iPhone application is a simple, bare-bones app used to view, update, and approve/deny which posts will be used for your Instagram page. To create this application, you can either utilize the individual files in the SWIFT files folder and then create your own interface, or you can just download the .zip file to use my project directly. In regards to the $99 yearly cost Apple Developer Program: for our purposes, we are not uploading this app onto the App Store, so we don't need this membership. However, if you're not a part of the program, you will need to re-run your app from Xcode onto your phone (using it as a simulator) once every 10 days. This is slightly tedious to do, but if you do not do so then the app will be rendered un-usable after this time frame (in the case you're not a member of their program). It is only a small inconvenience and since I'm usually not too far from my laptop, it's not an issue.
