@@ -11,8 +11,6 @@ In short, posts go from: Reddit -> database -> iphone app -> database(approved/e
 ## Credits
 The code used for the HomeModel.swift, PostModel.swift, and some of the ViewController.swift came from a [CodeWithChris.com](https://codewithchris.com/) tutorial (found [here](https://codewithchris.com/iphone-app-connect-to-mysql-database/)) and was modified to meet my needs.
 
-I also recommend crediting the Reddit user who made the original post :) The iPhone app formats the 
-
 ## Setup
 To set this up so you can use these files yourself for your own page, you must follow these steps:
 * Either pay to host a server or host one yourself (I used a shared server on [Dreamhost.com](https://dreamhost.com), they are cheap and simple to use).
